@@ -1,5 +1,24 @@
 const input = document.getElementById("input-btn")
 let data = []
+let getAll = localStorage;
+let arrE = []
+for (const e in getAll) {
+  arrE.push(e) 
+}
+// console.log(arrE);
+// Inget -6
+
+for (let m = 0; m < arrE.length-6; m++) {
+  console.log(arrE[m]);
+  arrE[m]
+  data.push(getLocal(arrE[m]))
+}
+
+console.log(data);
+
+let tableList = document.getElementById("list-table")
+let output = getData(data)
+tableList.innerHTML = output
 
 function getData(data) {
   let output = `<tr class="p-5 bg-blue-400">
@@ -47,9 +66,7 @@ function update() {
 const submit = document.getElementById("btn-submit")
 
 submit.addEventListener('click', function(){
-  let tableHeading = document.getElementById("heading-table")
-  tableHeading.classList.add("hidden")
-
+  
   let nama = document.getElementById("nama")
   let alamat = document.getElementById("alamat")
   let umur = document.getElementById("umur")
@@ -70,6 +87,13 @@ submit.addEventListener('click', function(){
     //Female radio button is checked
     tempObj.jenisKelamin = jenisKelaminWanita.value
   }
+
+  let set = setLocal(tempObj)
+  let get = getLocal(set)
+  console.log(get);
+  
+
+
   data.push(tempObj)
   nama.value = ""
   alamat.value = ""
@@ -77,7 +101,7 @@ submit.addEventListener('click', function(){
   document.getElementById("jenis-kelamin-pria").checked = undefined
   document.getElementById('jenis-kelamin-wanita').checked = undefined
   noHp.value = ""
-  console.log(data);
+  // console.log(data);
 
   let tableList = document.getElementById("list-table")
   
@@ -97,6 +121,8 @@ search.addEventListener('click', function (){
   
   tableList.innerHTML = output
 })
+
+
 
 function cariData(nama, data) {
   let result = []
@@ -137,5 +163,20 @@ function cariData(nama, data) {
   if (result.length < 1) {
     return 'Data tidak ditemukan'
   }
+  return result
+}
+
+function setLocal (tempObj) {
+  let result = []
+  let keyLocal = tempObj.nama
+  localStorage.setItem(keyLocal, JSON.stringify(tempObj))
+  result.push(keyLocal)
+  return result  
+}
+
+function getLocal (keyLocal) {
+  let result = {}
+  let get = JSON.parse(localStorage.getItem(keyLocal))
+  result = get
   return result
 }
