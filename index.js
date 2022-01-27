@@ -9,7 +9,7 @@ for (const e in getAll) {
 // Inget -6
 
 for (let m = 0; m < arrE.length-6; m++) {
-  console.log(arrE[m]);
+  // console.log(arrE[m]);
   arrE[m]
   data.push(getLocal(arrE[m]))
 }
@@ -44,6 +44,56 @@ function getData(data) {
   return output
 }
 
+function getDataPlusDelete(data){
+  let output = `<tr class="p-5 bg-blue-400">
+    <th class="p-5">No</th>
+    <th class="p-5">Nama</th>
+    <th class="p-5">Alamat</th>
+    <th class="p-5">Umur</th>
+    <th class="p-5">Jenis Kelamin</th>
+    <th class="p-5">No. Handphone</th>
+    <th class="p-5">Update</th>
+  </tr>\n`
+  let count = 0
+  for (const person of data) {
+    count++
+    output += `<tr class="bg-red-500">
+    <td class="p-5">${count}</td>
+    <td class="p-5">${person.nama}</td>
+    <td class="p-5">${person.alamat}</td>
+    <td class="p-5">${person.umur}</td>
+    <td class="p-5">${person.jenisKelamin}</td>
+    <td class="p-5">${person.noHp}</td>
+    <td class="p-5"><button onclick="deleteRow('${person.nama}')">Hapus</button></td>
+  </tr>`
+  }
+  return output
+}
+
+function deleteRow(str){
+  localStorage.removeItem(str)
+  data = []
+  let getAll = localStorage;
+  let arrE = []
+  for (const e in getAll) {
+    arrE.push(e) 
+  }
+// console.log(arrE);
+// Inget -6
+
+  for (let m = 0; m < arrE.length-6; m++) {
+    // console.log(arrE[m]);
+    arrE[m]
+    data.push(getLocal(arrE[m]))
+  }
+  let tableList = document.getElementById("list-table")
+  
+  let output = getDataPlusDelete(data)
+  tableList.innerHTML = output
+}
+
+// const delete = document.getElementById()
+
 input.addEventListener('click', function(){
   const element = document.getElementById("update");
   const element2 = document.getElementById("input")
@@ -55,13 +105,20 @@ input.addEventListener('click', function(){
   tableList.innerHTML = output
 })
 
-function update() {
+
+const update = document.getElementById("update-btn")
+
+update.addEventListener('click', function () {
   const element = document.getElementById("update");
   const element2 = document.getElementById("input")
   element.classList.remove("hidden");
   element2.classList.add("hidden")
-}
 
+  let output = getDataPlusDelete(data)
+  
+  let tableList = document.getElementById("list-table")
+  tableList.innerHTML = output
+})
 
 const submit = document.getElementById("btn-submit")
 
@@ -117,11 +174,10 @@ search.addEventListener('click', function (){
   const foundData = cariData (name.value, data)
   let tableList = document.getElementById("list-table")
   
-  let output = getData(foundData)
+  let output = getDataPlusDelete(foundData)
   
   tableList.innerHTML = output
 })
-
 
 
 function cariData(nama, data) {
