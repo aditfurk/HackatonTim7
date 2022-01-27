@@ -5,74 +5,129 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Covid Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header class="header">
-    <h1>Covid Tracker</h1>
+  <header class="header flex bg-blue-300 flex-col text-center py-5">
+    <h1 class="text-3xl mb-5">Covid Tracker</h1>
     <nav>
-      <button>Input</button>
-      <button>Update</button>
+      <button id="input-btn" onclick="input()"
+        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 mr-2 transition-all duration-300">Input</button>
+      <button id="update-btn" onclick="update()"
+        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 ml-2 transition-all duration-300">Update</button>
     </nav>
   </header>
-  <article id="input" style ="display: block;">
-    
 
-    <div class="form-input">
-      <label for="nama">Nama</label>
-      <input type="text" id="nama" name="nama">
-      <label for="alamat">Alamat</label>
-      <input type="text" id="alamat" name="alamat">
-      <label for="umur">Umur</label>
-      <input type="text" id="umur" name="umur">
-      <label for="jenis-kelamin">Jenis Kelamin</label>
-      <input type="radio" id="jenis-kelamin" name="jenis-kelamin" value="Pria">
-      <label for="jenis-kelamin">Pria</label>
-      <input type="radio" id="jenis-kelamin" name="jenis-kelamin" value="Wanita">
-      <label for="jenis-kelamin">Wanita</label>
-      <label for="no-hp">No. Handphone</label>
-      <input type="pnumber" id="no-hp" name="no-hp">
+  <article id="input" class="bg-blue-500 flex flex-col justify-center w-1/2 mx-auto p-14 mt-5">
+    <div class="form-input  w-2/3 mx-auto bg-blue-400 p-4 rounded-lg">
+      <div class="nama mb-5 flex justify-between">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama">
+      </div>
+      <div class="alamat mb-5 flex justify-between">
+        <label for="alamat">Alamat :</label>
+        <input type="text" id="alamat" name="alamat">
+      </div>
+      <div class="umur mb-5 flex justify-between">
+        <label for="umur">Umur :</label>
+        <input type="number" id="umur" name="umur">
+      </div>
+      <div class="jenis-kelamin mb-5 flex justify-between align-middle ">
+        <label>Jenis Kelamin :</label>
+        <div class="kelamin">
+          <input type="radio" id="jenis-kelamin-pria" name="jenis-kelamin" value="Pria">
+          <label for="jenis-kelamin-pria" class="mr-16">Pria</label>
+          <input type="radio" id="jenis-kelamin-wanita" name="jenis-kelamin" value="Wanita" class="ml-1">
+          <label for="jenis-kelamin-wanita">Wanita</label>
+        </div>
+      </div>
+      <div class="no-handphone mb-5 flex justify-between">
+        <label for="no-hp">No. Handphone :</label>
+        <input type="number" id="no-hp" name="no-hp">
+      </div>
     </div>
-    <button>Submit!</button>
+    <div class="btn  flex justify-center mt-6">
+      <button
+        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 ml-2 transition-all duration-300">Submit!</button>
+    </div>
   </article>
-  <article id="update" style="display: none;">
+
+
+  <article id="update" class="bg-blue-500 flex flex-col justify-center w-1/2 mx-auto p-14 mt-5 hidden">
     <!-- if event listener button update click, pake class list display jadi none, utk DOM -->
-    <div class="form-update">
-      <label for="nama-update">Nama</label>
+    <div class="form-update  w-2/3 mx-auto bg-blue-400 p-4 rounded-lg flex justify-between">
+      <label for="nama-update">Nama :</label>
       <input type="text" id="nama-update" name="nama-update">
     </div>
-    <button>Search</button>
-  </article>
-  <article>
-    <div>
-      <table rules='all'>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Alamat</th>
-          <th>Umur</th>
-          <th>Jenis Kelamin</th>
-          <th>No. Handphone</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Aditya Furkon Hendriadi</td>
-          <td>Bandung</td>
-          <td>22</td>
-          <td>Pria</td>
-          <td>0812312312</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Agra Bagaskara Raidinawan</td>
-          <td>Jakarta</td>
-          <td>27</td>
-          <td>Pria</td>
-          <td>081432312312</td>
-        </tr>
-      </table>
+    <div class="btn  flex justify-center mt-6">
+      <button
+        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 ml-2 transition-all duration-300">search</button>
     </div>
   </article>
+
+
+  <article>
+    <table rules="all" class="flex justify-center m-10 text-center ">
+      <tr class="p-5 bg-blue-400">
+        <th class="p-5">No</th>
+        <th class="p-5">Nama</th>
+        <th class="p-5">Alamat</th>
+        <th class="p-5">Umur</th>
+        <th class="p-5">Jenis Kelamin</th>
+        <th class="p-5">No. Handphone</th>
+      </tr>
+      <tr class="bg-red-500">
+        <td class="p-5">1</td>
+        <td class="p-5">Aditya Furkon Hendriadi</td>
+        <td class="p-5">Bandung</td>
+        <td class="p-5">22</td>
+        <td class="p-5">Pria</td>
+        <td class="p-5">0812312312</td>
+      </tr>
+      <tr class="bg-red-500">
+        <td class="p-5">2</td>
+        <td class="p-5">Agra Bagaskara Raidinawan</td>
+        <td class="p-5">Jakarta</td>
+        <td class="p-5">27</td>
+        <td class="p-5">Pria</td>
+        <td class="p-5">081432312312</td>
+      </tr>
+      <tr class="bg-red-500">
+        <td class="p-5">3</td>
+        <td class="p-5">Agra Bagaskara Raidinawan</td>
+        <td class="p-5">Jakarta</td>
+        <td class="p-5">27</td>
+        <td class="p-5">Pria</td>
+        <td class="p-5">081432312312</td>
+      </tr>
+      <tr class="bg-red-500">
+        <td class="p-5">4</td>
+        <td class="p-5">Agra Bagaskara Raidinawan</td>
+        <td class="p-5">Jakarta</td>
+        <td class="p-5">27</td>
+        <td class="p-5">Pria</td>
+        <td class="p-5">081432312312</td>
+      </tr>
+    </table>
+  </article>
+
+  <script>
+    function input() {
+      const element = document.getElementById("update");
+      const element2 = document.getElementById("input")
+      element.classList.add("hidden");
+      element2.classList.remove("hidden")
+    }
+    function update() {
+      const element = document.getElementById("update");
+      const element2 = document.getElementById("input")
+      element.classList.remove("hidden");
+      element2.classList.add("hidden")
+    }
+  </script>
 </body>
+
 </html>
