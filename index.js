@@ -145,9 +145,9 @@ submit.addEventListener('click', function(){
     tempObj.jenisKelamin = jenisKelaminWanita.value
   }
 
-  let set = setLocal(tempObj)
-  let get = getLocal(set)
-  console.log(get);
+  setLocal(tempObj)
+  // let get = getLocal(set)
+  // console.log(get);
   
 
 
@@ -175,8 +175,8 @@ search.addEventListener('click', function (){
   let tableList = document.getElementById("list-table")
   
   let output = getDataPlusDelete(foundData)
-  
   tableList.innerHTML = output
+  name.value = ''
 })
 
 
@@ -223,11 +223,8 @@ function cariData(nama, data) {
 }
 
 function setLocal (tempObj) {
-  let result = []
   let keyLocal = tempObj.nama
   localStorage.setItem(keyLocal, JSON.stringify(tempObj))
-  result.push(keyLocal)
-  return result  
 }
 
 function getLocal (keyLocal) {
