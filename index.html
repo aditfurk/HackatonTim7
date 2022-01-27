@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <header class="header">
+    <h1>Covid Tracker</h1>
+    <nav>
+      <button>Input</button>
+      <button>Update</button>
+    </nav>
+  </header>
+  <article id="input" style ="display: block;">
+    
+
+    <div class="form-input">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama">
+      <label for="alamat">Alamat</label>
+      <input type="text" id="alamat" name="alamat">
+      <label for="umur">Umur</label>
+      <input type="text" id="umur" name="umur">
+      <label for="jenis-kelamin">Jenis Kelamin</label>
+      <input type="radio" id="jenis-kelamin" name="jenis-kelamin" value="Pria">
+      <label for="jenis-kelamin">Pria</label>
+      <input type="radio" id="jenis-kelamin" name="jenis-kelamin" value="Wanita">
+      <label for="jenis-kelamin">Wanita</label>
+      <label for="no-hp">No. Handphone</label>
+      <input type="pnumber" id="no-hp" name="no-hp">
+    </div>
+    <button>Submit!</button>
+  </article>
+  <article id="update" style="display: none;">
+    <!-- if event listener button update click, pake class list display jadi none, utk DOM -->
+    <div class="form-update">
+      <label for="nama-update">Nama</label>
+      <input type="text" id="nama-update" name="nama-update">
+    </div>
+    <button>Search</button>
+  </article>
+  <article>
+    <div>
+      <table rules='all'>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Umur</th>
+          <th>Jenis Kelamin</th>
+          <th>No. Handphone</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Aditya Furkon Hendriadi</td>
+          <td>Bandung</td>
+          <td>22</td>
+          <td>Pria</td>
+          <td>0812312312</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Agra Bagaskara Raidinawan</td>
+          <td>Jakarta</td>
+          <td>27</td>
+          <td>Pria</td>
+          <td>081432312312</td>
+        </tr>
+      </table>
+    </div>
+  </article>
+</body>
+</html>
