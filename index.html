@@ -51,7 +51,7 @@
     </div>
     <div class="btn  flex justify-center mt-6">
       <button
-        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 ml-2 transition-all duration-300">Submit!</button>
+        class="py-2 px-3 rounded-lg bg-gray-400 text-white hover:bg-gray-500 ml-2 transition-all duration-300" id="btn-submit">Submit!</button>
     </div>
   </article>
 
@@ -70,64 +70,13 @@
 
 
   <article>
-    <table rules="all" class="flex justify-center m-10 text-center ">
-      <tr class="p-5 bg-blue-400">
-        <th class="p-5">No</th>
-        <th class="p-5">Nama</th>
-        <th class="p-5">Alamat</th>
-        <th class="p-5">Umur</th>
-        <th class="p-5">Jenis Kelamin</th>
-        <th class="p-5">No. Handphone</th>
-      </tr>
-      <tr class="bg-red-500">
-        <td class="p-5">1</td>
-        <td class="p-5">Aditya Furkon Hendriadi</td>
-        <td class="p-5">Bandung</td>
-        <td class="p-5">22</td>
-        <td class="p-5">Pria</td>
-        <td class="p-5">0812312312</td>
-      </tr>
-      <tr class="bg-red-500">
-        <td class="p-5">2</td>
-        <td class="p-5">Agra Bagaskara Raidinawan</td>
-        <td class="p-5">Jakarta</td>
-        <td class="p-5">27</td>
-        <td class="p-5">Pria</td>
-        <td class="p-5">081432312312</td>
-      </tr>
-      <tr class="bg-red-500">
-        <td class="p-5">3</td>
-        <td class="p-5">Agra Bagaskara Raidinawan</td>
-        <td class="p-5">Jakarta</td>
-        <td class="p-5">27</td>
-        <td class="p-5">Pria</td>
-        <td class="p-5">081432312312</td>
-      </tr>
-      <tr class="bg-red-500">
-        <td class="p-5">4</td>
-        <td class="p-5">Agra Bagaskara Raidinawan</td>
-        <td class="p-5">Jakarta</td>
-        <td class="p-5">27</td>
-        <td class="p-5">Pria</td>
-        <td class="p-5">081432312312</td>
-      </tr>
+    <h1 class="text-center mt-5" id="heading-table">Data tidak tersedia</h1>
+    <table rules="all" id="list-table" class="flex justify-center m-10 text-center ">
     </table>
   </article>
 
-  <script>
-    function input() {
-      const element = document.getElementById("update");
-      const element2 = document.getElementById("input")
-      element.classList.add("hidden");
-      element2.classList.remove("hidden")
-    }
-    function update() {
-      const element = document.getElementById("update");
-      const element2 = document.getElementById("input")
-      element.classList.remove("hidden");
-      element2.classList.add("hidden")
-    }
-  </script>
+  <script src="index.js"></script>
+
 </body>
 
 </html>
