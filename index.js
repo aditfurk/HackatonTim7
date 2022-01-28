@@ -91,8 +91,8 @@ function getDataPlusDelete(data){
       <td class="p-5">${person.jenisKelamin}</td>
       <td class="p-5">${person.noHp}</td>
       <td class="p-5"><button class = "bg-red-700 hover:bg-red-800 text-white  rounded-lg transition-all duration-300 mb-2 px-3 py-2"
-      " onclick="deleteRow('${person.nama}')">Hapus</button><br><button class="bg-green-700 hover:bg-green-800 text-white  rounded-lg transition-all duration-300 px-3 py-2"
-      " onclick="changeStatus('${person}')">Sudah Sembuh</button></td>
+      " onclick="deleteRow('${person.nama}')">Hapus</button>
+      </td>
       </tr>`
     }
   }
