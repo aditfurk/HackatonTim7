@@ -266,11 +266,17 @@ search.addEventListener('click', function (){
     swal("Input belum diisi!", "Silahkan input ulang!", "error");
   } else {
     const foundData = cariData (name.value, data)
-    let tableList = document.getElementById("list-table")
-    
-    let output = getDataPlusDelete(foundData)
-    tableList.innerHTML = output
-    name.value = ''
+    console.log(foundData);
+    if (foundData === 'Data tidak ditemukan'){
+      swal("Data tidak ditemukan!", "Silahkan input ulang!", "error");
+      name.value = ''
+    } else {
+      let tableList = document.getElementById("list-table")
+      
+      let output = getDataPlusDelete(foundData)
+      tableList.innerHTML = output
+      name.value = ''
+    }
   }
 })
 
