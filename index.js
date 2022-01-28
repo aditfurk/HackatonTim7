@@ -130,53 +130,63 @@ submit.addEventListener('click', function(){
   let jenisKelaminPria = document.getElementById("jenis-kelamin-pria")
   let jenisKelaminWanita = document.getElementById("jenis-kelamin-wanita")
   let noHp = document.getElementById("no-hp")
-  let tempObj = {
-    nama: nama.value,
-    alamat: alamat.value,
-    umur: umur.value,
-    jenisKelamin:"",
-    noHp: noHp.value
-  }
-  if(document.getElementById("jenis-kelamin-pria").checked) {
-    //Male radio button is checked
-    tempObj.jenisKelamin = jenisKelaminPria.value
-  }else if(document.getElementById('jenis-kelamin-wanita').checked) {
-    //Female radio button is checked
-    tempObj.jenisKelamin = jenisKelaminWanita.value
-  }
-
-  setLocal(tempObj)
-  // let get = getLocal(set)
-  // console.log(get);
+  if (!nama.value || !alamat.value || !umur.value || (!jenisKelaminPria.checked && !jenisKelaminWanita.checked) || !noHp.value) {
+    swal("Data tidak lengkap!", "Silahkan input ulang!", "error");
+  } else {
+    let tempObj = {
+      nama: nama.value,
+      alamat: alamat.value,
+      umur: umur.value,
+      jenisKelamin:"",
+      noHp: noHp.value
+    }
+    if(document.getElementById("jenis-kelamin-pria").checked) {
+      //Male radio button is checked
+      tempObj.jenisKelamin = jenisKelaminPria.value
+    }else if(document.getElementById('jenis-kelamin-wanita').checked) {
+      //Female radio button is checked
+      tempObj.jenisKelamin = jenisKelaminWanita.value
+    }
+    setLocal(tempObj)
+    // let get = getLocal(set)
+    // console.log(get);
+    
+    data.push(tempObj)
+    nama.value = ""
+    alamat.value = ""
+    umur.value = ""
+    document.getElementById("jenis-kelamin-pria").checked = undefined
+    document.getElementById('jenis-kelamin-wanita').checked = undefined
+    noHp.value = ""
+    // console.log(data);
   
-
-
-  data.push(tempObj)
-  nama.value = ""
-  alamat.value = ""
-  umur.value = ""
-  document.getElementById("jenis-kelamin-pria").checked = undefined
-  document.getElementById('jenis-kelamin-wanita').checked = undefined
-  noHp.value = ""
-  // console.log(data);
-
-  let tableList = document.getElementById("list-table")
+    let tableList = document.getElementById("list-table")
+    
+    let output = getData(data)
   
-  let output = getData(data)
+    tableList.innerHTML = output
+    swal("Data berhasil ditambahkan!", "Semoga lekas sembuh!", "success").then(function() {
+      window.location = "#list-table";
+    });
+  ;
+  }
 
-  tableList.innerHTML = output
 })
 
 const search = document.getElementById("search-btn")
 
 search.addEventListener('click', function (){
   const name = document.getElementById("nama-update")
-  const foundData = cariData (name.value, data)
-  let tableList = document.getElementById("list-table")
-  
-  let output = getDataPlusDelete(foundData)
-  tableList.innerHTML = output
-  name.value = ''
+  if (!name.value) {
+    swal("Input belum diisi!", "Silahkan input ulang!", "error");
+  } else {
+    const foundData = cariData (name.value, data)
+    let tableList = document.getElementById("list-table")
+    
+    let output = getDataPlusDelete(foundData)
+    tableList.innerHTML = output
+    name.value = ''
+  }
 })
 
 
@@ -185,7 +195,7 @@ function cariData(nama, data) {
   for (const person of data) {
     let namaData = person.nama.toLowerCase()
     let namaInput = nama.toLowerCase()
-    // let noKTP = person.noKTP
+    let noHp = person.noHp
     let found = false
     for (let i = 0; i < namaData.length; i++) {
       if (namaData[i] === namaInput[0]) {
@@ -200,21 +210,21 @@ function cariData(nama, data) {
         }
       }
     }
-    // if (!found) {
-    //   for (let i = 0; i < noKTP.length; i++) {
-    //     if (noKTP[i] === namaInput[0]) {
-    //       let tempStr = ''
-    //       for (let j = i; j < i + namaInput.length; j++) {
-    //         tempStr += noKTP[j]
-    //       }
-    //       if (tempStr === namaInput) {
-    //         result.push(person)
-    //         found = true
-    //         break;
-    //       }
-    //     }
-    //   }
-    // }
+    if (!found) {
+      for (let i = 0; i < noHp.length; i++) {
+        if (noHp[i] === namaInput[0]) {
+          let tempStr = ''
+          for (let j = i; j < i + namaInput.length; j++) {
+            tempStr += noHp[j]
+          }
+          if (tempStr === namaInput) {
+            result.push(person)
+            found = true
+            break;
+          }
+        }
+      }
+    }
   }
   if (result.length < 1) {
     return 'Data tidak ditemukan'

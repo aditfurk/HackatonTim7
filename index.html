@@ -30,7 +30,7 @@
   </header>
 
   <article id="input" class="flex flex-col justify-center w-1/2 mx-auto p-14 mt-5 rounded-lg">
-    <div class="form-input  w-2/3 mx-auto bg-white bg-opacity-50  p-4 rounded-lg">
+    <div class="form-input  w-3/4 mx-auto bg-white bg-opacity-50  p-4 rounded-lg">
       <div class="nama mb-5 flex justify-between">
         <label for="nama" class="font-bold text-base">Nama :</label>
         <input type="text" id="nama" name="nama" placeholder="Masukkan Nama" class="p-1">
@@ -64,11 +64,11 @@
   </article>
 
 
-  <article id="update" class="bg-white bg-opacity-30  rounded-lg flex flex-col justify-center w-1/2 mx-auto p-14 mt-5 hidden ">
+  <article id="update" class="rounded-lg flex flex-col justify-center w-1/2 mx-auto p-14 mt-5 hidden ">
     <!-- if event listener button update click, pake class list display jadi none, utk DOM -->
-    <div class="form-update  w-2/3 mx-auto bg-white bg-opacity-50 p-4 rounded-lg flex justify-between ">
-      <label for="nama-update" class="font-bold text-base">Nama :</label>
-      <input type="text" id="nama-update" name="nama-update" placeholder="Nama yang ingin dicari" class="p-1">
+    <div class="form-update mx-auto bg-white bg-opacity-50 p-4 rounded-lg flex justify-center ">
+      
+      <input type="text" id="nama-update" name="nama-update" placeholder="Nama/No. Hp yang ingin dicari" class="p-1 w-96">
     </div>
     <div class="btn  flex justify-center mt-6">
       <button
@@ -83,6 +83,7 @@
   </article>
 
   <script src="index.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 
