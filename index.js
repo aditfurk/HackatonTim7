@@ -32,17 +32,30 @@ function getData(data) {
   let count = 0
   for (const person of data) {
     count++
-    output += `<tr class="bg-red-600">
-    <td class="p-5">${count}</td>
-    <td class="p-5">${person.nama}</td>
-    <td class="p-5">${person.alamat}</td>
-    <td class="p-5">${person.umur}</td>
-    <td class="p-5">${person.jenisKelamin}</td>
-    <td class="p-5">${person.noHp}</td>
-  </tr>`
+    if (person.status === 'merah') {
+      output += `<tr class="bg-red-600"  >
+      <td class="p-5">${count}</td>
+      <td class="p-5">${person.nama}</td>
+      <td class="p-5">${person.alamat}</td>
+      <td class="p-5">${person.umur}</td>
+      <td class="p-5">${person.jenisKelamin}</td>
+      <td class="p-5">${person.noHp}</td>
+    </tr>`
+    } else {
+      output += `<tr class="bg-green-600" >
+      <td class="p-5">${count}</td>
+      <td class="p-5">${person.nama}</td>
+      <td class="p-5">${person.alamat}</td>
+      <td class="p-5">${person.umur}</td>
+      <td class="p-5">${person.jenisKelamin}</td>
+      <td class="p-5">${person.noHp}</td>
+      </tr>`
+    }
   }
   return output
 }
+
+
 
 function getDataPlusDelete(data){
   let output = `<tr class="p-5 bg-yellow-500">
@@ -57,39 +70,110 @@ function getDataPlusDelete(data){
   let count = 0
   for (const person of data) {
     count++
-    output += `<tr class="bg-red-600">
-    <td class="p-5">${count}</td>
-    <td class="p-5">${person.nama}</td>
-    <td class="p-5">${person.alamat}</td>
-    <td class="p-5">${person.umur}</td>
-    <td class="p-5">${person.jenisKelamin}</td>
-    <td class="p-5">${person.noHp}</td>
-    <td class="p-5"><button onclick="deleteRow('${person.nama}')">Hapus</button></td>
-  </tr>`
+    if (person.status === 'merah') {
+      output += `<tr class="bg-red-600" >
+      <td class="p-5">${count}</td>
+      <td class="p-5">${person.nama}</td>
+      <td class="p-5">${person.alamat}</td>
+      <td class="p-5">${person.umur}</td>
+      <td class="p-5">${person.jenisKelamin}</td>
+      <td class="p-5">${person.noHp}</td>
+      <td class="p-5"><button class = "bg-red-700 hover:bg-red-800 text-white  rounded-lg transition-all duration-300 mb-2 px-3 py-2"
+      " onclick="deleteRow('${person.nama}')">Hapus</button><br><button class="bg-green-700 hover:bg-green-800 text-white  rounded-lg transition-all duration-300 px-3 py-2"
+      " onclick="changeStatus('${person.nama}')">Sudah Sembuh</button></td>
+      </tr>`
+    } else {
+      output += `<tr class="bg-green-600" >
+      <td class="p-5">${count}</td>
+      <td class="p-5">${person.nama}</td>
+      <td class="p-5">${person.alamat}</td>
+      <td class="p-5">${person.umur}</td>
+      <td class="p-5">${person.jenisKelamin}</td>
+      <td class="p-5">${person.noHp}</td>
+      <td class="p-5"><button class = "bg-red-700 hover:bg-red-800 text-white  rounded-lg transition-all duration-300 mb-2 px-3 py-2"
+      " onclick="deleteRow('${person.nama}')">Hapus</button><br><button class="bg-green-700 hover:bg-green-800 text-white  rounded-lg transition-all duration-300 px-3 py-2"
+      " onclick="changeStatus('${person}')">Sudah Sembuh</button></td>
+      </tr>`
+    }
   }
   return output
 }
 
-function deleteRow(str){
-  localStorage.removeItem(str)
-  data = []
-  let getAll = localStorage;
-  let arrE = []
-  for (const e in getAll) {
-    arrE.push(e) 
-  }
-// console.log(arrE);
-// Inget -6
-
-  for (let m = 0; m < arrE.length-6; m++) {
-    // console.log(arrE[m]);
-    arrE[m]
-    data.push(getLocal(arrE[m]))
-  }
-  let tableList = document.getElementById("list-table")
+function changeStatus(obj) {
+  // let output = getDataPlusDelete(data)
   
-  let output = getDataPlusDelete(data)
-  tableList.innerHTML = output
+  // let tableList = document.getElementById("list-table")
+  // tableList.innerHTML = output
+  // let ul = document.getElementById(`tr-${str}`)
+  // ul.classList.remove('bg-red-600')
+  // ul.classList.add('bg-green-600')
+  // let ux = document.getElementById(`tr-input-${str}`)
+  // ux.classList.remove('bg-red-600')
+  // ux.classList.add('bg-green-600')
+ 
+  swal({
+    title: "Yakin bang udah sembuh?",
+    text: "Kalau di delete, tapi belom sembuh bahaya bang, punteeen",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      let temp = getLocal(obj)
+      localStorage.removeItem(temp)
+      temp.status = 'hijau'
+      setLocal(temp)
+      window.location.reload()
+      swal("Selamat ya bang udah sembuh hehe", {
+        icon: "success",
+      });
+    } else {
+      swal("Welcome back to quarantine hehe");
+    }
+  });
+
+}
+
+function deleteRow(str){
+  
+
+  swal({
+    title: "Yakin dihapus gan?",
+    text: "Kalau udah dihapus, gabisa balik lagi nih gan, jangan nyesel.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      localStorage.removeItem(str)
+      data = []
+      let getAll = localStorage;
+      let arrE = []
+      for (const e in getAll) {
+        arrE.push(e) 
+      }
+      // console.log(arrE);
+      // Inget -6
+
+      for (let m = 0; m < arrE.length-6; m++) {
+        // console.log(arrE[m]);
+        arrE[m]
+        data.push(getLocal(arrE[m]))
+      }
+      let tableList = document.getElementById("list-table")
+      
+      let output = getDataPlusDelete(data)
+      tableList.innerHTML = output
+      swal("Data berhasil dihapus gan!", {
+        icon: "success",
+      });
+    } else {
+      swal("Data masih aman gan! santuyyy");
+    }
+  });
+
 }
 
 // const delete = document.getElementById()
@@ -138,7 +222,8 @@ submit.addEventListener('click', function(){
       alamat: alamat.value,
       umur: umur.value,
       jenisKelamin:"",
-      noHp: noHp.value
+      noHp: noHp.value,
+      status: 'merah'
     }
     if(document.getElementById("jenis-kelamin-pria").checked) {
       //Male radio button is checked
