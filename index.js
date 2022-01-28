@@ -21,7 +21,7 @@ let output = getData(data)
 tableList.innerHTML = output
 
 function getData(data) {
-  let output = `<tr class="p-5 bg-blue-400">
+  let output = `<tr class="p-5 bg-yellow-500">
   <th class="p-5">No</th>
   <th class="p-5">Nama</th>
   <th class="p-5">Alamat</th>
@@ -32,7 +32,7 @@ function getData(data) {
   let count = 0
   for (const person of data) {
     count++
-    output += `<tr class="bg-red-500">
+    output += `<tr class="bg-red-600">
     <td class="p-5">${count}</td>
     <td class="p-5">${person.nama}</td>
     <td class="p-5">${person.alamat}</td>
@@ -45,7 +45,7 @@ function getData(data) {
 }
 
 function getDataPlusDelete(data){
-  let output = `<tr class="p-5 bg-blue-400">
+  let output = `<tr class="p-5 bg-yellow-500">
     <th class="p-5">No</th>
     <th class="p-5">Nama</th>
     <th class="p-5">Alamat</th>
@@ -57,7 +57,7 @@ function getDataPlusDelete(data){
   let count = 0
   for (const person of data) {
     count++
-    output += `<tr class="bg-red-500">
+    output += `<tr class="bg-red-600">
     <td class="p-5">${count}</td>
     <td class="p-5">${person.nama}</td>
     <td class="p-5">${person.alamat}</td>
